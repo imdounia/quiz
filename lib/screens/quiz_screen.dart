@@ -43,11 +43,11 @@ class _QuizScreenState extends State<QuizScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Quiz Result'),
-          content: Text('Your score: $score/$totalQuestions'),
+          title: Text('Résultat :'),
+          content: Text('Score: $score/$totalQuestions'),
           actions: <Widget>[
             ElevatedButton(
-              child: Text('Close'),
+              child: Text('Fermer'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -76,32 +76,51 @@ class _QuizScreenState extends State<QuizScreen> {
         padding: EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
+            Text('La grèque antique',
+                style: TextStyle(fontSize: 30.0, color: Colors.blue)),
+            SizedBox(height: 20),
+            Text(
+              'Question ${currentQuestionIndex + 1}/${questions.length}',
+              style: TextStyle(fontSize: 18.0),
+            ),
+            SizedBox(height: 8.0),
             Text(
               currentQuestion.question,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                submitAnswer(true);
-              },
-              child: Text(
-                'True',
-                style: TextStyle(fontSize: 18.0),
-              ),
-            ),
-            SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: () {
-                submitAnswer(false);
-              },
-              child: Text(
-                'False',
-                style: TextStyle(fontSize: 18.0),
-              ),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    submitAnswer(true);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  child: Text(
+                    'Vrai',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                SizedBox(width: 8.0),
+                ElevatedButton(
+                  onPressed: () {
+                    submitAnswer(false);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: Text(
+                    'Faux',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
