@@ -11,7 +11,8 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'My App',
+      title: 'Quiz App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       routeInformationParser: RouterService.getRoutes().routeInformationParser,
       routeInformationProvider:
