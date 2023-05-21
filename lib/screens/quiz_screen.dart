@@ -24,6 +24,12 @@ class _QuizScreenState extends State<QuizScreen> {
     setState(() {});
   }
 
+  void resetQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    setState(() {});
+  }
+
   void submitAnswer(bool answer) {
     if (answer == questions[currentQuestionIndex].answer) {
       score++;
@@ -45,11 +51,12 @@ class _QuizScreenState extends State<QuizScreen> {
         return AlertDialog(
           title: Text('Résultat :'),
           content: Text('Score: $score/$totalQuestions'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text('Fermer'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.restart_alt),
               onPressed: () {
                 Navigator.of(context).pop();
+                resetQuiz();
               },
             ),
           ],
